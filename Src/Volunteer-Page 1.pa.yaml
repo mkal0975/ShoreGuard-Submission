@@ -1,0 +1,109 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Volunteer-Page 1:
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Text9_1:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =145
+            Size: =48
+            Text: ="BEACHES SELECTION"
+            Width: =375
+            X: =160
+            Y: =40
+      - BeachCombo:
+          Control: ModernCombobox@1.1.0
+          Properties:
+            Fill: =RGBA(174, 208, 221, 1)
+            ItemDisplayText: =ThisItem.'Beach Names'
+            Items: =Beaches
+            X: =42
+            Y: =185
+      - Button5_2:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            OnSelect: |-
+              =If(
+                  IsBlank(UploadedImage1.Image),
+                  Notify("Please upload your certificate", NotificationType.Error),
+                  Patch(
+                      LifeguardDetails,
+                      LookUp(LifeguardDetails, ID = varVolunteer.ID),
+                      {
+                          Certificate: UploadedImage1.Image
+                      }
+                  );
+                  Set(varVolunteer, LookUp(LifeguardDetails, ID = varVolunteer.ID));
+                  Notify("Certificate uploaded successfully!", NotificationType.Success);
+                  Navigate('Volunteer-Page 2')
+              )
+            Text: ="Submit"
+            X: =189
+            Y: =978
+      - Button5_3:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            OnSelect: |-
+              =If(
+                  IsEmpty(BeachCombo.SelectedItems),
+                  Notify("Please select a beach", NotificationType.Error),
+                  Patch(
+                      LifeguardDetails,
+                      LookUp(LifeguardDetails, ID = varVolunteer.ID),
+                      {
+                          'Selected Beaches': Concat(BeachCombo.SelectedItems, 'Beach Names', ", ")
+                      }
+                  );
+                  Set(varVolunteer, LookUp(LifeguardDetails, ID = varVolunteer.ID));
+                  Notify("Beach selection saved!", NotificationType.Success)
+              )
+            Text: ="Next"
+            X: =182
+            Y: =276
+      - Text9_2:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 81, 100, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =145
+            Size: =48
+            Text: ="UPLOAD YOUR SURF LIFE-SAVING CERTIFICATE"
+            Width: =500
+            X: =56
+            Y: =368
+      - UploadedImage1:
+          Control: Image@2.2.3
+          Group: AddMediaWithImage1
+          Properties:
+            Height: =AddMediaButton1.Height
+            Image: =If(IsBlank(AddMediaButton1.Media), SampleImage, AddMediaButton1.Media)
+            ImagePosition: =ImagePosition.Fill
+            Width: =AddMediaButton1.Width
+            X: =AddMediaButton1.X
+            Y: =AddMediaButton1.Y
+      - AddMediaButton1:
+          Control: AddMedia@2.2.1
+          Group: AddMediaWithImage1
+          Properties:
+            Size: =25
+            X: =42
+            Y: =529

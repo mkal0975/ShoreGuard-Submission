@@ -1,0 +1,104 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Beach-Page 3(roster):
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Gallery2:
+          Control: Gallery@2.15.0
+          Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+          Properties:
+            Fill: =RGBA(174, 208, 221, 1)
+            Items: |+
+              =ForAll(
+                  Sequence(
+                      DateDiff(
+                          TimeValue(varBeach.Opens),
+                          TimeValue(varBeach.Closes),
+                          TimeUnit.Hours
+                      ) / 2
+                  ),
+                  {
+                      Slot:
+                          Text(
+                              DateAdd(
+                                  TimeValue(varBeach.Opens),
+                                  (Value - 1) * 2,
+                                  TimeUnit.Hours
+                              ),
+                              "HH:mm"
+                          )
+                          & " - " &
+                          Text(
+                              DateAdd(
+                                  TimeValue(varBeach.Opens),
+                                  Value * 2,
+                                  TimeUnit.Hours
+                              ),
+                              "HH:mm"
+                          )
+                  }
+              )
+            Width: =602
+            X: =27
+            Y: =390
+          Children:
+            - Label1:
+                Control: Label@2.5.1
+                Properties:
+                  OnSelect: =Select(Parent)
+                  Text: =ThisItem.Slot
+                  Width: =280
+                  X: =18
+                  Y: =34
+            - Label2:
+                Control: Label@2.5.1
+                Properties:
+                  OnSelect: =Select(Parent)
+                  Text: |-
+                    =Concat(
+                        Filter(
+                            LifeguardDetails,
+                            !IsBlank('Beach Today') &&
+                            Trim('Beach Today') = Trim(varBeach.Title) &&
+                            Trim(SlotToday) = Trim(ThisItem.Slot)
+                        ),
+                        Title,
+                        ", "
+                    )
+                  Width: =272
+                  X: =348
+                  Y: =34
+      - Text18:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Patrick Hand'
+            FontWeight: =FontWeight.Bold
+            Height: =127
+            Size: =72
+            Text: |-
+              ="ROSTER
+              "
+            Width: =312
+            X: =172
+            Y: =104
+      - Text20:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Patrick Hand'
+            Height: =172
+            Size: =40
+            Text: ="Today's Volunteers for your beach are:"
+            Width: =601
+            X: =28
+            Y: =218

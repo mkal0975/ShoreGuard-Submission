@@ -1,0 +1,62 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Beach-Page 2:
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Text10_1:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =138
+            Size: =48
+            Text: |-
+              ="Hi !
+              What Are We Doing Today?"
+            Width: =572
+            X: =39
+            Y: =105
+      - Button7:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(8, 222, 8, 1)
+            Font: =Font.'Patrick Hand'
+            Height: =194
+            OnSelect: =Navigate('Beach-Page 3(roster)', ScreenTransition.Fade)
+            Size: =48
+            Text: ="Check The Roster"
+            Width: =395
+            X: =128
+            Y: =325
+      - Button7_1:
+          Control: ModernButton@1.0.0
+          Properties:
+            Align: =Align.Right
+            BasePaletteColor: =RGBA(249, 83, 109, 1)
+            Font: =Font.'Patrick Hand'
+            Height: =194
+            OnSelect: =Navigate('Alert Details')
+            Size: =48
+            Text: ="Raise An Alert !"
+            Width: =395
+            X: =128
+            Y: =628
+      - Image3_1:
+          Control: Image@2.2.3
+          Properties:
+            Height: =127
+            Image: =alert
+            Width: =95
+            X: =145
+            Y: =661

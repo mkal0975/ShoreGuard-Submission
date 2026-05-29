@@ -1,0 +1,130 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Beach Page 1:
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+      OnVisible: |+
+        =
+    Children:
+      - Text9_3:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =145
+            Size: =48
+            Text: |-
+              ="BEACH
+              SELECTION"
+            Width: =375
+            X: =160
+            Y: =40
+      - Text9_4:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =145
+            Size: =48
+            Text: |-
+              ="BEACH
+              TIMINGS"
+            Width: =375
+            X: =120
+            Y: =420
+      - Text14:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =75
+            Size: =30
+            Text: ="Beach Opens At :"
+            Width: =300
+            X: =42
+            Y: =597
+      - OpensTime:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter time"
+            X: =42
+            Y: =672
+      - Text14_1:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =75
+            Size: =30
+            Text: ="Beach Closes At :"
+            Width: =300
+            X: =42
+            Y: =786
+      - ClosesTime:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter time"
+            X: =42
+            Y: =861
+      - Button5_4:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            OnSelect: |-
+              =If(
+                  IsBlank(DropDown.Selected.'Beach Names'),
+                  Notify("Please select a beach", NotificationType.Error),
+                  Set(varBeach, LookUp(BeachDetails, Title = DropDown.Selected.'Beach Names'));
+                  Notify("Beach selected!", NotificationType.Success)
+              )
+            Text: ="Submit"
+            X: =182
+            Y: =276
+      - Button3_2:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: |
+              =If(
+                  IsBlank(varBeach),
+                  Notify("Please select a beach first", NotificationType.Error),
+                  IsBlank(OpensTime.Text) Or IsBlank(ClosesTime.Text),
+                  Notify("Please enter both opening and closing times", NotificationType.Error),
+                  TimeValue(OpensTime.Text) >= TimeValue(ClosesTime.Text),
+                  Notify("Opening time must be before closing time", NotificationType.Error),
+                  Patch(
+                      BeachDetails,
+                      varBeach,
+                      {
+                          Opens: OpensTime.Text,
+                          Closes: ClosesTime.Text
+                      }
+                  );
+                  Notify("Beach timings updated!", NotificationType.Success);
+                  Set(varBeach, LookUp(BeachDetails, Email = EmailInput_1.Text));
+                  Navigate('Beach-Page 2')
+              )
+            Text: ="SUBMIT"
+            X: =182
+            Y: =957
+      - DropDown:
+          Control: ModernDropdown@1.0.0
+          Properties:
+            Fill: =RGBA(174, 208, 221, 1)
+            ItemDisplayText: =ThisItem.'Beach Names'
+            Items: =Beaches
+            X: =42
+            Y: =185

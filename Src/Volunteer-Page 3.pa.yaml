@@ -1,0 +1,90 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Volunteer-Page 3:
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Text9:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Patrick Hand'
+            Height: =120
+            Size: =72
+            Text: ="Booking confirmation"
+            Width: =424
+            X: =117
+            Y: =111
+      - Text15:
+          Control: ModernText@1.0.0
+          Properties:
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Patrick Hand'
+            Height: =94
+            Size: =40
+            Text: ="You Have Chosen To Volunteer At:"
+            Width: =516
+            X: =54
+            Y: =348
+      - Label5:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =40
+            Text: |+
+              ="Beach: " & varVolunteer.'Beach Today'
+            X: =49
+            Y: =438
+      - Text15_1:
+          Control: ModernText@1.0.0
+          Properties:
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Patrick Hand'
+            Height: =94
+            Size: =40
+            Text: ="You Have Chosen The Time Slot :"
+            Width: =516
+            X: =49
+            Y: =598
+      - Label6:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =40
+            Text: |+
+              ="Time Slot: " & varVolunteer.SlotToday
+            X: =49
+            Y: =682
+      - Button9:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            OnSelect: =Navigate('Volunteer - Final')
+            Text: ="SUBMIT"
+            X: =172
+            Y: =817
+      - Button5_6:
+          Control: ModernButton@1.0.0
+          Properties:
+            Appearance: =ButtonAppearance.Secondary
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =76
+            OnSelect: =Navigate('Volunteer-Page 2')
+            Text: ="Go Back Instead?"
+            Width: =535
+            X: =60
+            Y: =1003

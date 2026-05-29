@@ -1,0 +1,164 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Sign Up Page(b):
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Text6_1:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            Height: =128
+            Size: =72
+            Text: ="SIGN UP - BEACH "
+            Width: =481
+            X: =114
+            Y: =62
+      - Text7_5:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Enter Email :"
+            X: =48
+            Y: =190
+      - EmailInput_1:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Email"
+            X: =48
+            Y: =240
+      - Text7_6:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Enter Name Of The Beach:"
+            Width: =420
+            X: =48
+            Y: =304
+      - UsernameInput_1:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Name Of The Beach"
+            X: =48
+            Y: =354
+      - Text7_7:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Enter Password :"
+            X: =48
+            Y: =418
+      - PasswordInput_1:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Password"
+            Type: =TextInputType.Password
+            X: =48
+            Y: =468
+      - Text7_8:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Re - Enter Password :"
+            Width: =288
+            X: =48
+            Y: =532
+      - ConfirmPasswordInput_1:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Re - Enter Your Password"
+            Type: =TextInputType.Password
+            X: =48
+            Y: =582
+      - Text7_9:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Enter Contact Number :"
+            Width: =326
+            X: =48
+            Y: =647
+      - ContactInput_1:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Contact Number"
+            X: =48
+            Y: =697
+      - Button5_5:
+          Control: ModernButton@1.0.0
+          Properties:
+            Appearance: =ButtonAppearance.Secondary
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =76
+            OnSelect: =Navigate('Create Account')
+            Text: ="Go Back Instead?"
+            Width: =535
+            X: =60
+            Y: =1003
+      - Button10:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            OnSelect: |+
+              =If(
+                  IsBlank(EmailInput_1.Text) Or
+                  IsBlank(UsernameInput_1.Text) Or
+                  IsBlank(PasswordInput_1.Text) Or
+                  IsBlank(ConfirmPasswordInput_1.Text) Or
+                  IsBlank(ContactInput_1.Text),
+                  Notify("Please fill in all fields", NotificationType.Error),
+
+                  !IsMatch(EmailInput_1.Text, Match.Email),
+                  Notify("Please enter a valid email address", NotificationType.Error),
+
+                  PasswordInput_1.Text <> ConfirmPasswordInput_1.Text,
+                  Notify("Passwords do not match", NotificationType.Error),
+
+                  !IsBlank(LookUp(BeachDetails, Email = EmailInput_1.Text)),
+                  Notify("An account with this email already exists", NotificationType.Error),
+
+                  Patch(
+                      BeachDetails,
+                      Defaults(BeachDetails),
+                      {
+                          Title: UsernameInput_1.Text,
+                          Email: EmailInput_1.Text,
+                          Username: UsernameInput_1.Text,
+                          Password: PasswordInput_1.Text,
+                          'Re - Enter Password': ConfirmPasswordInput_1.Text,
+                          'Contact Number': ContactInput_1.Text,
+                          Opens: "",
+                          Closes: ""
+                      }
+                  );
+                  Notify("Beach facility account created!", NotificationType.Success);
+                  Navigate('Beach Page 1')
+              )
+
+            Text: ="Submit"
+            X: =188
+            Y: =832

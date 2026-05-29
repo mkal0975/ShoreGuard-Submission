@@ -1,0 +1,64 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Create Account:
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Button4:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Semibold
+            Height: =177
+            OnSelect: =Navigate('Sign Up Page(v)')
+            Size: =32
+            Text: ="As Volunteer"
+            Width: =286
+            X: =200
+            Y: =388
+      - Button4_1:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Semibold
+            Height: =177
+            OnSelect: =Navigate('Sign Up Page(b)')
+            Size: =32
+            Text: ="As Beach Facility"
+            Width: =286
+            X: =200
+            Y: =644
+      - Text8:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Patrick Hand'
+            FontWeight: =FontWeight.Bold
+            Height: =200
+            Size: =60
+            Text: ="CREATE ACCOUNT"
+            Width: =420
+            X: =133
+            Y: =172
+      - Button5:
+          Control: ModernButton@1.0.0
+          Properties:
+            Appearance: =ButtonAppearance.Secondary
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =76
+            OnSelect: =Navigate('Main Screen')
+            Text: ="Go Back Instead?"
+            Width: =535
+            X: =58
+            Y: =988

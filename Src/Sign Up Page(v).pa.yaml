@@ -1,0 +1,166 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Sign Up Page(v):
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Text6:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            Height: =118
+            Size: =72
+            Text: ="SIGN UP - VOLUNTEER"
+            Width: =571
+            X: =69
+            Y: =72
+      - Text7:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Email :"
+            X: =48
+            Y: =190
+      - EmailInput:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Email"
+            X: =48
+            Y: =240
+      - Text7_1:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Username :"
+            Width: =246
+            X: =48
+            Y: =304
+      - UsernameInput:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Username"
+            X: =48
+            Y: =354
+      - Text7_2:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Password :"
+            X: =48
+            Y: =418
+      - PasswordInput:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Password"
+            Type: =TextInputType.Password
+            X: =48
+            Y: =468
+      - Text7_3:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Re - Enter Password :"
+            Width: =288
+            X: =48
+            Y: =532
+      - ConfirmPasswordInput:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Re - Enter Your Password"
+            Type: =TextInputType.Password
+            X: =48
+            Y: =582
+      - Text7_4:
+          Control: ModernText@1.0.0
+          Properties:
+            Color: =RGBA(255, 255, 255, 1)
+            Text: ="Contact Number :"
+            Width: =326
+            X: =48
+            Y: =647
+      - ContactInput:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Appearance: =Appearance.Outline
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            Placeholder: ="Enter Your Contact Number"
+            X: =48
+            Y: =697
+      - Button3:
+          Control: ModernButton@1.0.0
+          Properties:
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            OnSelect: |-
+              =If(
+                  IsBlank(EmailInput.Text) Or 
+                  IsBlank(UsernameInput.Text) Or 
+                  IsBlank(PasswordInput.Text) Or 
+                  IsBlank(ConfirmPasswordInput.Text) Or 
+                  IsBlank(ContactInput.Text),
+                  Notify("Please fill in all fields", NotificationType.Error),
+
+                  !IsMatch(EmailInput.Text, Match.Email),
+                  Notify("Please enter a valid email address", NotificationType.Error),
+
+                  PasswordInput.Text <> ConfirmPasswordInput.Text,
+                  Notify("Passwords do not match", NotificationType.Error),
+
+                  !IsBlank(LookUp(LifeguardDetails, Email = EmailInput.Text)),
+                  Notify("An account with this email already exists", NotificationType.Error),
+
+                  Patch(
+                      LifeguardDetails,
+                      Defaults(LifeguardDetails),
+                      {
+                          Title: UsernameInput.Text,
+                          Email: EmailInput.Text,
+                          Username: UsernameInput.Text,
+                          Password: PasswordInput.Text,
+                          'Re - Enter Password': ConfirmPasswordInput.Text,
+                          'Contact Number': ContactInput.Text,
+                          'Selected Beaches': "",
+                          'Beach Today': "",
+                          SlotToday: ""
+                      }
+                  );
+                  Set(varVolunteer, LookUp(LifeguardDetails, Email = EmailInput.Text));
+                  Notify("Account created successfully!", NotificationType.Success);
+                  Navigate('Volunteer-Page 1')
+              )
+            Text: ="SUBMIT"
+            X: =188
+            Y: =832
+      - Button5_1:
+          Control: ModernButton@1.0.0
+          Properties:
+            Appearance: =ButtonAppearance.Secondary
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =76
+            OnSelect: =Navigate('Create Account')
+            Text: ="Go Back Instead?"
+            Width: =535
+            X: =60
+            Y: =1003

@@ -1,0 +1,133 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Alert Details:
+    Properties:
+      Fill: =RGBA(0, 81, 100, 1)
+    Children:
+      - Image3_2:
+          Control: Image@2.2.3
+          Properties:
+            Height: =370
+            Image: =alert
+            Width: =445
+            X: =97
+            Y: =5
+      - Text10_2:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =138
+            Size: =48
+            Text: =""
+            Width: =572
+            X: =34
+            Y: =442
+      - Text10_3:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =138
+            Size: =46
+            Text: |-
+              ="Specify Number Of Volunteers
+              "
+            Width: =572
+            X: =34
+            Y: =528
+      - NumberInput2:
+          Control: ModernNumberInput@1.1.0
+          Properties:
+            Align: =Align.Center
+            BasePaletteColor: =RGBA(141, 229, 250, 1)
+            Fill: =RGBA(174, 208, 221, 1)
+            X: =46
+            Y: =622
+      - Text10_4:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =138
+            Size: =32
+            Text: |-
+              ="The alert will be sent to all available lifeguards nearby.
+              The alert will continue repeating till the required number of olunteers is needed."
+            Width: =572
+            X: =33
+            Y: =699
+      - Button7_2:
+          Control: ModernButton@1.0.0
+          Properties:
+            Align: =Align.Right
+            BasePaletteColor: =RGBA(249, 83, 109, 1)
+            Font: =Font.'Patrick Hand'
+            Height: =194
+            OnSelect: |-
+              =If(
+                  IsBlank(TextInput1.Text) Or
+                  IsBlank(NumberInput2.Value) Or NumberInput2.Value < 1,
+                  Notify("Please fill in all fields", NotificationType.Error),
+                  Patch(
+                      Beaches,
+                      LookUp(Beaches, 'Beach Names' = varBeach.Title),
+                      {
+                          'Number Of Volunteers': NumberInput2.Value,
+                          'Alert Reason': TextInput1.Text
+                      }
+                  );
+                  Notify("Volunteer requirement saved for your beach.", NotificationType.Success);
+                  Navigate('Raised Alert')
+              )
+            Size: =48
+            Text: ="Raise Alert !"
+            Width: =395
+            X: =128
+            Y: =901
+      - Image3_3:
+          Control: Image@2.2.3
+          Properties:
+            Height: =127
+            Image: =alert
+            Width: =95
+            X: =161
+            Y: =934
+      - Text10_6:
+          Control: ModernText@1.0.0
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans Condensed'
+            FontWeight: =FontWeight.Bold
+            Height: =138
+            Size: =46
+            Text: |-
+              ="Specify Reason For Alert
+              "
+            Width: =572
+            X: =33
+            Y: =351
+      - TextInput1:
+          Control: ModernTextInput@1.1.0
+          Properties:
+            Fill: =RGBA(174, 208, 221, 1)
+            X: =45
+            Y: =425

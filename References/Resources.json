@@ -1,0 +1,28 @@
+{
+  "Resources": [
+    {
+      "Name": "SampleImage",
+      "Schema": "i",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "/ctrllib/image/images/SampleImage.svg",
+      "Path": "/ctrllib/image/images/SampleImage.svg",
+      "Content": "Image",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/image/images/SampleImage.svg"
+    },
+    {
+      "Name": "alert",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "ce4f8b31-83a0-406c-a5f9-fa32055404cd.png",
+      "Path": "Assets\\Images\\ce4f8b31-83a0-406c-a5f9-fa32055404cd.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil102seau.blob.core.windows.net/5bfcf003-dd40-4ac9-a1e2-95b122b37141-1/resource/Y2U0ZjhiMzEtODNhMC00MDZjLWE1ZjktZmEzMjA1NTQwNGNk.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-05-29T05%3A10%3A21Z&ske=2026-05-30T05%3A25%3A21Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-05-30T05%3A25%3A21Z&sr=b&sp=r&sig=RN0XBiYokrl1C7K%2FnBoYCg1ewSZuP8BX0PF2gpT08tw%3D"
+    }
+  ]
+}
