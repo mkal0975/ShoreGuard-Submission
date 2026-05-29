@@ -55,8 +55,8 @@ pac canvas unpack --msapp ShoreGuard.msapp --sources ./Src
 
 1. **[User Guide](./ShoreGuard%20-%20User%20Guide.pdf)** — Instructions for end users on navigating and using the app
 2. **[Technical Documentation](./ShoreGuard%20-%20Technical%20Documentation.pdf)** — Architecture, data sources, configuration, and developer reference
-3. **[Reflection](./ShoreGuard%20-%20Reflection.pdf)** — Project reflections, lessons learned, and retrospective notes
-4. **[Q&A + Testing](./ShoreGuard%20-%20Q%26A%20%2B%20Testing.pdf)** — Questions, answers, and testing outcomes
+3. **[Reflection](./Shoreguard%20-%20Reflection.pdf)** — Project reflections, lessons learned, and retrospective notes
+4. **[Q&A + Testing](./ShoreGuard%20-%20Quality%20Assurance%20and%20Testing.pdf)** — Questions, answers, and testing outcomes
 
 ## Code Quality
 
